@@ -87,14 +87,22 @@
           mousePosition.y
         )}px; `;
         const style = `${left}${top}${color}${size}`;
+
+        const ball = document.createElement("div");
+        ball.classList.add("ball");
+        ball.style = style;
+        ball.addEventListener("animationend", function(e) {
+          e.target.remove();
+        });
+        container.appendChild(ball);
       });
     }
-    const ball = document.createElement("div");
-    ball.classList.add("ball");
-    ball.style = style;
-    ball.addEventListener("animationend", function(e) {
-      e.target.remove();
+
+    window.addEventListener("mouseover", function() {
+      drawId = draw();
     });
-    container.appendChild("ball", 10)
+    window.addEventListener("mouseout", function() {
+      clearInterval(drawId);
+    });
   </script>
 </html>
